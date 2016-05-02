@@ -60,7 +60,7 @@
 		244A92481CA210F7007B42D6 /* OCKWeekLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 244A92421CA210F7007B42D6 /* OCKWeekLabelsView.m */; };
 		244A92491CA210F7007B42D6 /* OCKWeekViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 244A92431CA210F7007B42D6 /* OCKWeekViewController.h */; };
 		244A924A1CA210F7007B42D6 /* OCKWeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 244A92441CA210F7007B42D6 /* OCKWeekViewController.m */; };
-		248929751C90E70100EBBE1F /* OCKConnectDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 248929641C90E70100EBBE1F /* OCKConnectDetailViewController.h */; };
+		248929751C90E70100EBBE1F /* OCKConnectDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 248929641C90E70100EBBE1F /* OCKConnectDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		248929761C90E70100EBBE1F /* OCKConnectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 248929651C90E70100EBBE1F /* OCKConnectDetailViewController.m */; };
 		248929771C90E70100EBBE1F /* OCKConnectTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 248929661C90E70100EBBE1F /* OCKConnectTableViewCell.h */; };
 		248929781C90E70100EBBE1F /* OCKConnectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 248929671C90E70100EBBE1F /* OCKConnectTableViewCell.m */; };
@@ -75,7 +75,7 @@
 		248929841C90E70100EBBE1F /* OCKContactSharingTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 248929731C90E70100EBBE1F /* OCKContactSharingTableViewCell.h */; };
 		248929851C90E70100EBBE1F /* OCKContactSharingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 248929741C90E70100EBBE1F /* OCKContactSharingTableViewCell.m */; };
 		2489298C1C90E71700EBBE1F /* OCKDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 248929881C90E71700EBBE1F /* OCKDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2489298D1C90E71700EBBE1F /* OCKHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 248929891C90E71700EBBE1F /* OCKHelpers.h */; };
+		2489298D1C90E71700EBBE1F /* OCKHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 248929891C90E71700EBBE1F /* OCKHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2489298E1C90E71700EBBE1F /* OCKHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2489298A1C90E71700EBBE1F /* OCKHelpers.m */; };
 		24935CD21C7E341E00B208A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24935CD11C7E341E00B208A9 /* Assets.xcassets */; };
 		24EA9FB21C9A3D420036028E /* OCKCareCardAdditionalInfoTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 24EA9F931C9A3D420036028E /* OCKCareCardAdditionalInfoTableViewCell.h */; };

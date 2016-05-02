@@ -31,10 +31,16 @@
 
 #import "OCKConnectDetailViewController.h"
 #import "OCKConnectTableViewHeader.h"
+#import "OCKContactInfoTableViewCell.h"
+#import "OCKContactSharingTableViewCell.h"
 #import "OCKDefines_Private.h"
 
 
 static const CGFloat HeaderViewHeight = 225.0;
+
+@interface OCKConnectDetailViewController () <OCKContactInfoTableViewCellDelegate, OCKContactSharingTableViewCellDelegate>
+
+@end
 
 @implementation OCKConnectDetailViewController {
     OCKConnectTableViewHeader *_headerView;

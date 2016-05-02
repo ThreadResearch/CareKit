@@ -31,6 +31,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CareKit/OCKDefines.h>
+#import <CareKit/OCKHelpers.h>
 
 // CarePlan
 #import <CareKit/NSDateComponents+CarePlan.h>
@@ -58,6 +59,7 @@
 // Connect
 #import <CareKit/OCKContact.h>
 #import <CareKit/OCKConnectViewController.h>
+#import <CareKit/OCKConnectDetailViewController.h>
 
 // PDF
 #import <CareKit/OCKDocument.h>
