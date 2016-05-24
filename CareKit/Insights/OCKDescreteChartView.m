@@ -31,15 +31,18 @@
 
 #import "OCKDescreteChartView.h"
 #import "OCKDescreteBarView.h"
+#import "OCKDescreteLegendView.h"
+#import "OCKDescreteXAxisView.h"
+#import "OCKDescreteYAxisView.h"
 #import "OCKLabel.h"
 #import "OCKHelpers.h"
 
-static const CGFloat TopPaddingPercentage = 0.05;
-static const CGFloat GraphBoxHeightPercentage = 0.6;
+static const CGFloat DescreteChratTopPadding = 10.0;
+static const CGFloat GraphBoxHeightPercentage = 0.55;
 static const CGFloat GraphBoxWidthPercentage = 0.7;
-static const CGFloat YAxisHeightPercentage = 0.6;
+static const CGFloat YAxisHeightPercentage = 0.55;
 static const CGFloat YAxisWidthPercentage = 0.15; // Two Y-Axis, so both will be 0.3
-static const CGFloat XAxisHeightPercentage = 0.1;
+static const CGFloat XAxisHeightPercentage = 0.15;
 static const CGFloat XAxisWidthPercentage = 0.7;
 static const CGFloat LegendHeightPercentage = 0.25;
 static const CGFloat LegendWidthPercentage = 1.0;
@@ -74,6 +77,7 @@ static const CGFloat LegendWidthPercentage = 1.0;
 @end
 
 @implementation OCKDescreteChartView {
+    NSMutableArray<OCKXAxisType *> *_xAxisTypes;
     NSMutableArray<OCKDescreteBarData *> *_descreteBarDatas;
     OCKDescreteBarChartBarType *_descreteBarType;
 
@@ -114,6 +118,7 @@ static const CGFloat LegendWidthPercentage = 1.0;
         _descreteBarHeight = viewFrame.size.height;
 
         _descreteBarDatas = [NSMutableArray new];
+        _xAxisTypes = [NSMutableArray new];
         for (int index = 0; index < numberOfDataSeries; index++) {
             OCKDescreteBarData *barData = [OCKDescreteBarData new];
             barData.highValue = [_dataSource chartView:self highValueForDataSeriesAtIndex:index];
@@ -125,6 +130,7 @@ static const CGFloat LegendWidthPercentage = 1.0;
             OCKXAxisType *axisType = [OCKXAxisType new];
             axisType.title = [_dataSource chartView:self titleForXAxisAtIndex:index];
             axisType.subTitle = [_dataSource chartView:self subtitleForXAXISAtIndex:index];
+            [_xAxisTypes addObject:axisType];
         }
     }
     [self recreateViews];
@@ -159,11 +165,11 @@ static const CGFloat LegendWidthPercentage = 1.0;
     _xAxisBox = [UIView new];
     _legendBox = [UIView new];
 
-    _graphBox.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.2];
-    _leftYAxisBox.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.2];
-    _rightYAxisBox.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.2];
-    _xAxisBox.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
-    _legendBox.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+//    _graphBox.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.2];
+//    _leftYAxisBox.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.2];
+//    _rightYAxisBox.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.2];
+//    _xAxisBox.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
+//    _legendBox.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
 
     _graphBox.translatesAutoresizingMaskIntoConstraints = NO;
     _leftYAxisBox.translatesAutoresizingMaskIntoConstraints = NO;
@@ -184,7 +190,7 @@ static const CGFloat LegendWidthPercentage = 1.0;
                                                             toItem:self
                                                          attribute:NSLayoutAttributeTop
                                                         multiplier:1.0
-                                                          constant:0.0]];
+                                                          constant:DescreteChratTopPadding]];
 
     [_constraints addObject:[NSLayoutConstraint constraintWithItem:_graphBox
                                                          attribute:NSLayoutAttributeBottom
@@ -233,7 +239,7 @@ static const CGFloat LegendWidthPercentage = 1.0;
                                                             toItem:self
                                                          attribute:NSLayoutAttributeTop
                                                         multiplier:1.0
-                                                          constant:0.0]];
+                                                          constant:DescreteChratTopPadding]];
 
     [_constraints addObject:[NSLayoutConstraint constraintWithItem:_leftYAxisBox
                                                          attribute:NSLayoutAttributeBottom
@@ -282,7 +288,7 @@ static const CGFloat LegendWidthPercentage = 1.0;
                                                             toItem:self
                                                          attribute:NSLayoutAttributeTop
                                                         multiplier:1.0
-                                                          constant:0.0]];
+                                                          constant:DescreteChratTopPadding]];
 
     [_constraints addObject:[NSLayoutConstraint constraintWithItem:_rightYAxisBox
                                                          attribute:NSLayoutAttributeBottom
@@ -398,14 +404,23 @@ static const CGFloat LegendWidthPercentage = 1.0;
                                                         multiplier:1.0
                                                           constant:0.0]];
 
-    // Set Up Descrete Bar Views
+
+    [self setUpGraphBox];
+    [self setUpRightYAxis];
+    [self setUpLeftYAxis];
+    [self setUpXAxis];
+    [self setUpLegend];
+
+    [NSLayoutConstraint activateConstraints:_constraints];
+}
+
+- (void)setUpGraphBox {
     for (int i = 0; i < _descreteBarDatas.count; i++) {
         OCKDescreteBarData *barData = _descreteBarDatas[i];
         OCKDescreteBarView *descreteBarView = [[OCKDescreteBarView alloc] initWithBar:barData
                                                                              maxValue:_descreteBarType.maxValueRange.doubleValue
                                                                              minValue:_descreteBarType.minValueRange.doubleValue];
         descreteBarView.translatesAutoresizingMaskIntoConstraints = NO;
-//        descreteBarView.backgroundColor = i % 2 == 0 ? [UIColor greenColor] : [UIColor grayColor];
 
         [_constraints addObject:[NSLayoutConstraint constraintWithItem:descreteBarView
                                                              attribute:NSLayoutAttributeTop
@@ -466,11 +481,87 @@ static const CGFloat LegendWidthPercentage = 1.0;
                                                                 multiplier:1.0
                                                                   constant:0.0]];
         }
-
+        
         [_graphBox addSubview:descreteBarView];
     }
+}
 
-    [NSLayoutConstraint activateConstraints:_constraints];
+- (void)setUpRightYAxis {
+    NSString *max = [NSString stringWithFormat:@"%@-", _descreteBarType.maxValueRange];
+    NSString *min = [NSString stringWithFormat:@"%@-", _descreteBarType.minValueRange];
+
+    NSArray *titles = @[max, min];
+    NSArray *colors = @[_descreteBarType.highTintColor, _descreteBarType.lowTintColor];
+    OCKDescreteYAxisView *yAxis = [[OCKDescreteYAxisView alloc] initWithTitles:titles colors:colors isLeftSide:NO];
+    yAxis.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [_rightYAxisBox addSubview:yAxis];
+    [self setUpBasicConstraintWithView:yAxis toView:_rightYAxisBox];
+}
+
+- (void)setUpLeftYAxis {
+    
+}
+
+- (void)setUpXAxis {
+    NSMutableArray<NSString *> *titles = [NSMutableArray new];
+    NSMutableArray<NSString *> *subtitles = [NSMutableArray new];
+
+    for (int i = 0; i < _xAxisTypes.count; i++) {
+        [titles addObject:_xAxisTypes[i].title];
+        [subtitles addObject:_xAxisTypes[i].subTitle ?: @""];
+    }
+
+    OCKDescreteXAxisView *xAxis = [[OCKDescreteXAxisView alloc] initWithTitles:titles subtitles:subtitles];
+    xAxis.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [_xAxisBox addSubview:xAxis];
+    [self setUpBasicConstraintWithView:xAxis toView:_xAxisBox];
+}
+
+- (void)setUpLegend {
+    NSArray *titles = @[_descreteBarType.highTitle, _descreteBarType.lowTitle];
+    NSArray *colors = @[_descreteBarType.highTintColor, _descreteBarType.lowTintColor];
+
+    OCKDescreteLegendView *legendView = [[OCKDescreteLegendView alloc] initWithTitles:titles colors:colors];
+    legendView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [_legendBox addSubview:legendView];
+    [self setUpBasicConstraintWithView:legendView toView:_legendBox];
+}
+
+- (void)setUpBasicConstraintWithView:(UIView *)view1 toView:(UIView *)view2 {
+    [_constraints addObject:[NSLayoutConstraint constraintWithItem:view1
+                                                         attribute:NSLayoutAttributeTop
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:view2
+                                                         attribute:NSLayoutAttributeTop
+                                                        multiplier:1.0
+                                                          constant:0.0]];
+
+    [_constraints addObject:[NSLayoutConstraint constraintWithItem:view1
+                                                         attribute:NSLayoutAttributeBottom
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:view2
+                                                         attribute:NSLayoutAttributeBottom
+                                                        multiplier:1.0
+                                                          constant:0.0]];
+
+    [_constraints addObject:[NSLayoutConstraint constraintWithItem:view1
+                                                         attribute:NSLayoutAttributeLeading
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:view2
+                                                         attribute:NSLayoutAttributeLeading
+                                                        multiplier:1.0
+                                                          constant:0.0]];
+
+    [_constraints addObject:[NSLayoutConstraint constraintWithItem:view1
+                                                         attribute:NSLayoutAttributeTrailing
+                                                         relatedBy:NSLayoutRelationEqual
+                                                            toItem:view2
+                                                         attribute:NSLayoutAttributeTrailing
+                                                        multiplier:1.0
+                                                          constant:0.0]];
 }
 
 @end

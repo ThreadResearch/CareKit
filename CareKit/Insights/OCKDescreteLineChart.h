@@ -49,11 +49,11 @@ OCK_CLASS_AVAILABLE
  @param title                       The title for the chart (see `OCKInsightItem`).
  @param text                        The description text for the chart (see `OCKInsightItem`).
  @param tintColor                   The tint color for the chart (see `OCKInsightItem`).
- @param axisTitles                  An array of strings representing the y-axis title for each category.
- @param axisSubtitles               An array of strings representing the y-axis subtitle for each category.
+ @param axisTitles                  An array of strings representing the x-axis title for each category.
+ @param axisSubtitles               An array of strings representing the x-axis subtitle for each category.
  @param dataSeries                  An array of `OCKBarSeries` objects.
- @param minimumScaleRangeValue      The minimum value of scale range.
- @param maximumScaleRangeValue      The maximum value of scale range.
+ @param minimumScaleRangeValue      The minimum value of scale range. Will represent the descrete y-axis title.
+ @param maximumScaleRangeValue      The maximum value of scale range. Will represent the descrete y-axis title.
 
  @return An initialzed bar chart object.
  */
