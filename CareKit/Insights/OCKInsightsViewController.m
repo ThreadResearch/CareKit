@@ -32,6 +32,7 @@
 #import "OCKInsightsViewController.h"
 #import "OCKInsightsTableViewHeaderView.h"
 #import "OCKInsightsChartTableViewCell.h"
+#import "OCKInsightsDescreteChartTableViewCell.h"
 #import "OCKInsightsMessageTableViewCell.h"
 #import "OCKChart.h"
 #import "OCKHelpers.h"
@@ -92,8 +93,7 @@ static const CGFloat HeaderViewHeight = 60.0;
     [self updateHeaderView];
     
     _tableView.estimatedRowHeight = 90.0;
-    _tableView.rowHeight = UITableViewAutomaticDimension;
-    
+
     _tableView.sectionHeaderHeight = 0.0;
     _tableView.sectionFooterHeight = 5.0;
 }
@@ -106,6 +106,9 @@ static const CGFloat HeaderViewHeight = 60.0;
         for (UITableViewCell *cell in _tableView.visibleCells) {
             if ([cell isKindOfClass:[OCKInsightsChartTableViewCell class]]) {
                 OCKInsightsChartTableViewCell *chartCell = (OCKInsightsChartTableViewCell *)cell;
+                [chartCell animateWithDuration:1.0];
+            } else if ([cell isKindOfClass:[OCKInsightsDescreteChartTableViewCell class]]) {
+                OCKInsightsDescreteChartTableViewCell *chartCell = (OCKInsightsDescreteChartTableViewCell *)cell;
                 [chartCell animateWithDuration:1.0];
             }
         }
@@ -216,11 +219,31 @@ static const CGFloat HeaderViewHeight = 60.0;
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    OCKInsightItem *item = self.items[indexPath.section];
+
+    if ([item isKindOfClass:[OCKDescreteLineChart class]]) {
+        return 300.0;
+    }
+
+    return UITableViewAutomaticDimension;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     OCKInsightItem *item = self.items[indexPath.section];
     
-    if ([item isKindOfClass:[OCKChart class]]) {
+    if ([item isKindOfClass:[OCKDescreteLineChart class]]) {
+        static NSString *ChartCellIdentifier = @"DescreteChartCell";
+        OCKInsightsDescreteChartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ChartCellIdentifier];
+        if (!cell) {
+            cell = [[OCKInsightsDescreteChartTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                                reuseIdentifier:ChartCellIdentifier];
+        }
+        cell.chart = (OCKChart *)item;
+        cell.showEdgeIndicator = _showEdgeIndicators;
+        return cell;
+    } else if ([item isKindOfClass:[OCKChart class]]) {
         static NSString *ChartCellIdentifier = @"ChartCell";
         OCKInsightsChartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ChartCellIdentifier];
         if (!cell) {

@@ -55,6 +55,8 @@
 #import <CareKit/OCKBarChart.h>
 #import <CareKit/OCKInsightsViewController.h>
 #import <CareKit/OCKGroupedBarChartView.h>
+#import <CareKit/OCKDescreteSeries.h>
+#import <CareKit/OCKDescreteLineChart.h>
 
 // Connect
 #import <CareKit/OCKContact.h>
