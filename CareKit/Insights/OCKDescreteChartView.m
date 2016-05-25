@@ -51,6 +51,7 @@ static const CGFloat XAxisWidthPercentage = 0.7;
 @property (nonatomic, copy) NSString *lowTitle;
 @property (nonatomic, strong) UIColor *highTintColor;
 @property (nonatomic, strong) UIColor *lowTintColor;
+@property (nonatomic, strong) UIColor *barTintColor;
 @property (nonatomic, strong) NSNumber *maxValueRange;
 @property (nonatomic, strong) NSNumber *minValueRange;
 
@@ -108,6 +109,7 @@ static const CGFloat XAxisWidthPercentage = 0.7;
         _descreteBarType.lowTitle = [_dataSource nameForLowValuesForChartView:self];
         _descreteBarType.highTintColor = [_dataSource highTintColorForChartView:self];
         _descreteBarType.lowTintColor = [_dataSource lowTintColorForChartView:self];
+        _descreteBarType.barTintColor = [_dataSource barTintColorForChartView:self];
         _descreteBarType.maxValueRange = [_dataSource maximumHighValueOfChartView:self];
         _descreteBarType.minValueRange = [_dataSource minimumLowValueOfChartView:self];
 
@@ -123,6 +125,7 @@ static const CGFloat XAxisWidthPercentage = 0.7;
             barData.lowValue = [_dataSource chartView:self lowValueForDataSeriesAtIndex:index];
             barData.highTintColor = _descreteBarType.highTintColor;
             barData.lowTintColor = _descreteBarType.lowTintColor;
+            barData.barTintColor = _descreteBarType.barTintColor;
             [_descreteBarDatas addObject:barData];
 
             OCKXAxisType *axisType = [OCKXAxisType new];

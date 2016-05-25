@@ -37,5 +37,6 @@
 @property (nonatomic, copy) NSNumber *lowValue;
 @property (nonatomic, copy) UIColor *highTintColor;
 @property (nonatomic, copy) UIColor *lowTintColor;
+@property (nonatomic, copy) UIColor *barTintColor;
 
 @end

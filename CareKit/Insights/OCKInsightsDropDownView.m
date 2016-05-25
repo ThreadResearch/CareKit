@@ -32,7 +32,6 @@
 #import "OCKInsightsDropDownView.h"
 #import "OCKLabel.h"
 
-
 static const CGFloat Padding = 5.0;
 static const CGFloat CarrotImageHeightPercentage = 0.15;
 
@@ -65,11 +64,13 @@ static const CGFloat CarrotImageHeightPercentage = 0.15;
     selectorVC.delegate = self;
     selectorVC.view.tintColor = self.tintColor;
 
-    [[self getRootViewController] presentViewController:selectorVC animated:false completion:nil];
+    UIViewController *viewController = [self getRootViewController];
+    viewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [viewController presentViewController:selectorVC animated:true completion:nil];
 }
 
 - (UIViewController *)getRootViewController {
-    UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    UIViewController *rootViewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     return rootViewController;
 }
 
@@ -117,7 +118,7 @@ static const CGFloat CarrotImageHeightPercentage = 0.15;
                                                            toItem:self
                                                         attribute:NSLayoutAttributeLeading
                                                        multiplier:1.0
-                                                         constant:Padding]];
+                                                         constant:0.0]];
 
     [constraints addObject:[NSLayoutConstraint constraintWithItem:_title
                                                         attribute:NSLayoutAttributeTrailing
@@ -141,7 +142,7 @@ static const CGFloat CarrotImageHeightPercentage = 0.15;
                                                            toItem:self
                                                         attribute:NSLayoutAttributeTrailing
                                                        multiplier:1.0
-                                                         constant:-50.0]];
+                                                         constant:0.0]];
 
     [constraints addObject:[NSLayoutConstraint constraintWithItem:_carrot
                                                         attribute:NSLayoutAttributeHeight

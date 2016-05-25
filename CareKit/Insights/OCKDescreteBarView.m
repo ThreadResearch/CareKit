@@ -131,7 +131,7 @@ static const CGFloat IndicatorHeightPercentage = 0.05;
         path.lineWidth = barWidth;
 
         _highBarLayer.path = path.CGPath;
-        _highBarLayer.strokeColor = [UIColor lightGrayColor].CGColor;
+        _highBarLayer.strokeColor = _barData.barTintColor.CGColor;
         _highBarLayer.lineWidth = barWidth;
         [_highBarView.layer addSublayer:_highBarLayer];
     }
@@ -145,7 +145,7 @@ static const CGFloat IndicatorHeightPercentage = 0.05;
         path.lineWidth = barWidth;
 
         _lowBarLayer.path = path.CGPath;
-        _lowBarLayer.strokeColor = [UIColor lightGrayColor].CGColor;
+        _lowBarLayer.strokeColor = _barData.barTintColor.CGColor;
         _lowBarLayer.lineWidth = barWidth;
         [_lowBarView.layer addSublayer:_lowBarLayer];
     }

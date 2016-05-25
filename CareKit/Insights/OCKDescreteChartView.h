@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)chartView:(OCKDescreteChartView *)chartView titleForXAxisAtIndex:(NSUInteger)index;
 
 /**
- The high tint color of a specified descrete bar series.
+ The high tint color of the descrete bar series.
 
  @param     chartView           An object representing the chart view requesting this information.
  @return    High tint color of a specified descrete bar series.
@@ -87,12 +87,20 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIColor *)highTintColorForChartView:(OCKDescreteChartView *)chartView;
 
 /**
- The low tint color of a specified descrete bar series.
+ The low tint color of the descrete bar series.
 
  @param     chartView           An object representing the chart view requesting this information.
- @return    Low tint color of a specified descrete bar series.
+ @return    Low tint color of the descrete bar series.
  */
 - (UIColor *)lowTintColorForChartView:(OCKDescreteChartView *)chartView;
+
+/**
+ The bar tint color of a specified descrete bar series.
+
+ @param     chartView           An object representing the chart view requesting this information.
+ @return    Bar tint color of the descrete bar series.
+ */
+- (UIColor *)barTintColorForChartView:(OCKDescreteChartView *)chartView;
 
 /**
  Maximum high value of descrete bar.

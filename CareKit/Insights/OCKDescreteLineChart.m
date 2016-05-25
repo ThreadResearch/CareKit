@@ -198,6 +198,10 @@
     return self.descreteSeries.lowTintColor ?: [self tintColor];
 }
 
+- (UIColor *)barTintColorForChartView:(OCKDescreteChartView *)chartView {
+    return self.descreteSeries.barTintColor ?: [UIColor lightGrayColor];
+}
+
 - (NSNumber *)maximumHighValueOfChartView:(OCKDescreteChartView *)chartView {
     return self.maximumScaleRangeValue ?: [self.descreteSeries getHighestValue];
 }

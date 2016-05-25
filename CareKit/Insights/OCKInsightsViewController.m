@@ -223,7 +223,7 @@ static const CGFloat HeaderViewHeight = 60.0;
     OCKInsightItem *item = self.items[indexPath.section];
 
     if ([item isKindOfClass:[OCKDescreteLineChart class]]) {
-        return 400.0;
+        return OCKDescreteLineChartHeight;
     }
 
     return UITableViewAutomaticDimension;

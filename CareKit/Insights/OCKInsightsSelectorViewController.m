@@ -61,7 +61,8 @@ static NSString *SelectCellReuseIdentifer = @"Select Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
+
+//    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8];
 }
 
 - (void)viewWillAppear:(BOOL)__unused animated {
@@ -71,23 +72,20 @@ static NSString *SelectCellReuseIdentifer = @"Select Cell";
     [self moveUpTableViewWithCompletion:nil];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-
 #pragma mark - Helper Functions
 
 - (void)dismissView {
-    [self moveDownTableViewWithCompletion:^(BOOL finished) {
-        [self dismissViewControllerAnimated:NO completion:nil];
-    }];
+    [self dismissViewControllerAnimated:true completion:nil];
+//    [self moveDownTableViewWithCompletion:^(BOOL finished) {
+//        [self dismissViewControllerAnimated:NO completion:nil];
+//    }];
 }
 
 - (void)prepareView {
     _downFrame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - 20);
     _upFrame = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height - 20);
 
-    _tableView = [[UITableView alloc] initWithFrame:_downFrame style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:_upFrame style:UITableViewStylePlain];
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _tableView.sectionHeaderHeight = SelectorViewHeaderHeight;
     _tableView.rowHeight = SelectorViewCellHeight;

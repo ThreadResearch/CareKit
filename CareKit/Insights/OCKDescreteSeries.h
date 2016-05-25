@@ -58,7 +58,8 @@ OCK_CLASS_AVAILABLE
                          lowTitle:(NSString *)lowTitle
                            values:(NSArray<NSArray< NSNumber *> *> *)values
                     highTintColor:(nullable UIColor *)highTintColor
-                     lowTintColor:(nullable UIColor *)lowTintColor;
+                     lowTintColor:(nullable UIColor *)lowTintColor
+                     barTintColor:(nullable UIColor *)barTintColor;
 
 /**
  The high value title of the step series.
@@ -88,6 +89,13 @@ OCK_CLASS_AVAILABLE
  If the value is not specified, the app's tint color is used.
  */
 @property (nonatomic, readonly, nullable) UIColor *lowTintColor;
+
+/**
+ The tint color of the descrete bars.
+
+ If the value is not specified, the lightGrayColor is used.
+ */
+@property (nonatomic, readonly, nullable) UIColor *barTintColor;
 
 /**
  Returns the greatest value in values.

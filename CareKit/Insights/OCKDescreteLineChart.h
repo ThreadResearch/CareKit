@@ -31,6 +31,7 @@
 
 #import <CareKit/CareKit.h>
 
+static const CGFloat OCKDescreteLineChartHeight = 400;
 
 NS_ASSUME_NONNULL_BEGIN
 

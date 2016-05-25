@@ -44,12 +44,13 @@
                          lowTitle:(NSString *)lowTitle
                            values:(NSArray<NSArray<NSNumber *> *> *)values
                     highTintColor:(UIColor *)highTintColor
-                     lowTintColor:(UIColor *)lowTintColor {
+                     lowTintColor:(UIColor *)lowTintColor
+                     barTintColor:(UIColor *)barTintColor{
     NSAssert((values.count > 0), @"The number of values must be greater than 0.");
 
     for (int i = 0; i < values.count; i++) {
         NSAssert((values[i].count == 2 || values[i].count == 0), @"Each array within the values array should only have 2 or no values.");
-        NSAssert((values[i][0] > values[i][1]), @"The first value of the sub-value array should be greater than the second value.");
+        NSAssert((values[i][0].doubleValue > values[i][1].doubleValue), @"The first value of the sub-value array should be greater than the second value.");
     }
 
     self = [super init];
@@ -59,6 +60,7 @@
         _values = OCKArrayCopyObjects(values);
         _highTintColor = highTintColor;
         _lowTintColor = lowTintColor;
+        _barTintColor = barTintColor;
     }
     return self;
 }
@@ -73,7 +75,8 @@
             OCKEqualObjects(self.lowTitle, castObject.lowTitle) &&
             OCKEqualObjects(self.values, castObject.values) &&
             OCKEqualObjects(self.highTintColor, castObject.highTintColor) &&
-            OCKEqualObjects(self.lowTintColor, castObject.lowTintColor));
+            OCKEqualObjects(self.lowTintColor, castObject.lowTintColor) &&
+            OCKEqualObjects(self.barTintColor, castObject.barTintColor));
 }
 
 - (NSNumber *)getHighestValue {
@@ -112,6 +115,7 @@
         OCK_DECODE_OBJ_ARRAY(aDecoder, values, NSArray);
         OCK_DECODE_OBJ_CLASS(aDecoder, highTintColor, UIColor);
         OCK_DECODE_OBJ_CLASS(aDecoder, lowTintColor, UIColor);
+        OCK_DECODE_OBJ_CLASS(aDecoder, barTintColor, UIColor);
     }
     return self;
 }
@@ -122,6 +126,7 @@
     OCK_ENCODE_OBJ(aCoder, values);
     OCK_ENCODE_OBJ(aCoder, highTintColor);
     OCK_ENCODE_OBJ(aCoder, lowTintColor);
+    OCK_DECODE_OBJ(aCoder, barTintColor);
 }
 
 
@@ -134,6 +139,7 @@
     series->_values = OCKArrayCopyObjects(_values);
     series->_highTintColor = _highTintColor;
     series->_lowTintColor = _lowTintColor;
+    series->_barTintColor = _barTintColor;
     return series;
 }
 
