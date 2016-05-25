@@ -1,21 +1,21 @@
 /*
- Copyright (c) 2016, Apple Inc. All rights reserved.
- 
+ Copyright (c) 2016, ThreadResearch. All rights reserved.
+
  Redistribution and use in source and binary forms, with or without modification,
  are permitted provided that the following conditions are met:
- 
+
  1.  Redistributions of source code must retain the above copyright notice, this
  list of conditions and the following disclaimer.
- 
+
  2.  Redistributions in binary form must reproduce the above copyright notice,
  this list of conditions and the following disclaimer in the documentation and/or
  other materials provided with the distribution.
- 
+
  3.  Neither the name of the copyright holder(s) nor the names of any contributors
  may be used to endorse or promote products derived from this software without
  specific prior written permission. No license is granted to the trademarks of
  the copyright holders even if such marks are included in this software.
- 
+
  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,43 +28,20 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#import <UIKit/UIKit.h>
 
-/* Care Card */
-"CARE_CARD_HEADER_TITLE" = "Care Completion";
-"TODAY_BUTTON_TITLE" = "Today";
+@class OCKInsightsSelectorViewController;
 
-/* Care Card Detail View */
-"CARE_CARD_INSTRUCTIONS_SECTION_TITLE" = "Instructions";
-"CARE_CARD_ADDITIONAL_INFO_SECTION_TITLE" = "Additional Information";
+@protocol OCKInsightsSelectorViewControllerDelegate <NSObject>
 
-/* Symptom Tracker */
-"SYMPTOM_TRACKER_HEADER_TITLE" = "Activity Completion";
+- (void)selectorView:(OCKInsightsSelectorViewController *)selectorView didSelectTitleAtIndex:(NSUInteger)index;
 
-/* Connect Master View */
-"CARE_TEAM_SECTION_TITLE" = "Care Team";
-"PERSONAL_SECTION_TITLE" = "Friends & Family";
-"CONNECT_NO_CONTACTS_TITLE" = "No contacts";
+@end
 
-/* Connect Detail View */
-"CONTACT_INFO_SECTION_TITLE" = "Contact Info";
-"CONTACT_SHARING_SECTION_TITLE" = "Sharing";
-"CONTACT_INFO_PHONE_TITLE" = "phone";
-"CONTACT_INFO_MESSAGE_TITLE" = "text";
-"CONTACT_INFO_EMAIL_TITLE" = "email";
-"SHARING_CELL_TITLE" = "Send reports";
-"ERROR_TITLE" = "Error";
-"MESSAGE_SEND_ERROR" = "Message send failed";
-"EMAIL_SEND_ERROR" = "Email send failed";
+@interface OCKInsightsSelectorViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-/* ACCESSIBILITY */
-"AX_WEEK_BUTTON_PROGRESS" = "%@ completed"; // '75% completed'
-"AX_CARE_CARD_COMPLETED" = "Completed";
-"AX_CARE_CARD_INCOMPLETE" = "Incomplete";
-"AX_CARE_CARD_EVENT_LABEL" = "%@, %i of %lu, %@"; // 'Completed, 3 of 10, Diet'
-"AX_CARE_CARD_HINT" = "Double tap to view instructions";
-"AX_CARE_CARD_VALUE" = "%lu of %lu completed"; // '1 of 10 completed'
-"AX_SYMPTOM_TRACKER_NOT_STARTED" = "Not Started";
+@property (weak, nonatomic) id<OCKInsightsSelectorViewControllerDelegate> delegate;
 
-/* Selector Controller */
-"CANCEL" = "Cancel";
-"SELECT" = "Select";
+- (id)initWithTitles:(NSArray<NSString *> *)titles withSelectedIndex:(NSUInteger)index;
+
+@end

@@ -223,7 +223,7 @@ static const CGFloat HeaderViewHeight = 60.0;
     OCKInsightItem *item = self.items[indexPath.section];
 
     if ([item isKindOfClass:[OCKDescreteLineChart class]]) {
-        return 300.0;
+        return 400.0;
     }
 
     return UITableViewAutomaticDimension;
@@ -241,6 +241,7 @@ static const CGFloat HeaderViewHeight = 60.0;
                                                                 reuseIdentifier:ChartCellIdentifier];
         }
         cell.chart = (OCKChart *)item;
+        cell.titles = @[item.title, @"Second Title", @"Third Title", @"Fourth Title", @"Fifth Title", @"6th Title"];
         cell.showEdgeIndicator = _showEdgeIndicators;
         return cell;
     } else if ([item isKindOfClass:[OCKChart class]]) {

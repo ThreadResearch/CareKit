@@ -44,8 +44,6 @@ static const CGFloat YAxisHeightPercentage = 0.55;
 static const CGFloat YAxisWidthPercentage = 0.15; // Two Y-Axis, so both will be 0.3
 static const CGFloat XAxisHeightPercentage = 0.15;
 static const CGFloat XAxisWidthPercentage = 0.7;
-static const CGFloat LegendHeightPercentage = 0.25;
-static const CGFloat LegendWidthPercentage = 1.0;
 
 @interface OCKDescreteBarChartBarType : NSObject
 
@@ -164,12 +162,6 @@ static const CGFloat LegendWidthPercentage = 1.0;
     _rightYAxisBox = [UIView new];
     _xAxisBox = [UIView new];
     _legendBox = [UIView new];
-
-//    _graphBox.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.2];
-//    _leftYAxisBox.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.2];
-//    _rightYAxisBox.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.2];
-//    _xAxisBox.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
-//    _legendBox.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
 
     _graphBox.translatesAutoresizingMaskIntoConstraints = NO;
     _leftYAxisBox.translatesAutoresizingMaskIntoConstraints = NO;
