@@ -54,7 +54,7 @@
 		242DBA9B1C9F7F8700529386 /* OCKRingButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 242DBA8D1C9F7F8700529386 /* OCKRingButton.m */; };
 		242DBA9C1C9F7F8700529386 /* OCKRingView.h in Headers */ = {isa = PBXBuildFile; fileRef = 242DBA8E1C9F7F8700529386 /* OCKRingView.h */; };
 		242DBA9D1C9F7F8700529386 /* OCKRingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 242DBA8F1C9F7F8700529386 /* OCKRingView.m */; };
-		244A92451CA210F7007B42D6 /* OCKTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 244A923F1CA210F7007B42D6 /* OCKTableViewCell.h */; };
+		244A92451CA210F7007B42D6 /* OCKTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 244A923F1CA210F7007B42D6 /* OCKTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		244A92461CA210F7007B42D6 /* OCKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 244A92401CA210F7007B42D6 /* OCKTableViewCell.m */; };
 		244A92471CA210F7007B42D6 /* OCKWeekLabelsView.h in Headers */ = {isa = PBXBuildFile; fileRef = 244A92411CA210F7007B42D6 /* OCKWeekLabelsView.h */; };
 		244A92481CA210F7007B42D6 /* OCKWeekLabelsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 244A92421CA210F7007B42D6 /* OCKWeekLabelsView.m */; };
@@ -100,7 +100,7 @@
 		24EA9FC81C9A3D420036028E /* OCKHeartButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EA9FA91C9A3D420036028E /* OCKHeartButton.m */; };
 		24EA9FC91C9A3D420036028E /* OCKHeartView.h in Headers */ = {isa = PBXBuildFile; fileRef = 24EA9FAA1C9A3D420036028E /* OCKHeartView.h */; };
 		24EA9FCA1C9A3D420036028E /* OCKHeartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EA9FAB1C9A3D420036028E /* OCKHeartView.m */; };
-		24F8E4761C934FEE003B77BD /* OCKDefines_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F8E4741C934FEE003B77BD /* OCKDefines_Private.h */; };
+		24F8E4761C934FEE003B77BD /* OCKDefines_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F8E4741C934FEE003B77BD /* OCKDefines_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		24F8E47B1C93515A003B77BD /* CareKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24F8E47D1C93515A003B77BD /* CareKit.strings */; };
 		8605A5BE1C4F04EC00DD65FF /* CareKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8605A5BD1C4F04EC00DD65FF /* CareKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8605A5C51C4F04EC00DD65FF /* CareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8605A5BA1C4F04EC00DD65FF /* CareKit.framework */; };
@@ -126,7 +126,7 @@
 		8677EE1D1C9775EB00588CD6 /* OCKCareSchedule_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 8677EE091C9775EB00588CD6 /* OCKCareSchedule_Internal.h */; };
 		8677EE1E1C9775EB00588CD6 /* OCKCareSchedule_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8677EE0A1C9775EB00588CD6 /* OCKCareSchedule_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		8677EE251C97776100588CD6 /* CareKit_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 8677EE241C97771A00588CD6 /* CareKit_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		86E803901CB4812F00B5C021 /* OCKLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 86E8038E1CB4812F00B5C021 /* OCKLabel.h */; };
+		86E803901CB4812F00B5C021 /* OCKLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 86E8038E1CB4812F00B5C021 /* OCKLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		86E803911CB4812F00B5C021 /* OCKLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E8038F1CB4812F00B5C021 /* OCKLabel.m */; };
 		86EA9A4E1C9C644E00B93BB1 /* OCKDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 86EA9A4A1C9C644E00B93BB1 /* OCKDocument.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		86EA9A4F1C9C644E00B93BB1 /* OCKDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EA9A4B1C9C644E00B93BB1 /* OCKDocument.m */; };

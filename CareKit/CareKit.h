@@ -63,3 +63,8 @@
 
 // PDF
 #import <CareKit/OCKDocument.h>
+
+// General
+#import <CareKit/OCKDefines_Private.h>
+#import <CareKit/OCKLabel.h>
+#import <CareKit/OCKTableViewCell.h>
