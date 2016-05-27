@@ -71,9 +71,9 @@ static const CGFloat HeaderViewHeight = 60.0;
 }
 
 - (instancetype)initWithInsightItems:(NSArray<OCKInsightItem *> *)items {
-    return [[OCKInsightsViewController alloc] initWithInsightItems:items
-                                                       headerTitle:nil
-                                                    headerSubtitle:nil];
+    return [[[self class] alloc] initWithInsightItems:items
+                                          headerTitle:nil
+                                       headerSubtitle:nil];
 }
 
 - (void)viewDidLoad {
