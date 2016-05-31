@@ -128,7 +128,7 @@ static const CGFloat HeaderViewHeight = 225.0;
         [contactInfoSection addObject:@(OCKConnectTypeEmail)];
     }
     
-    if (self.delegate) {
+    if (self.delegate && self.contact.type == OCKContactTypeCareTeam) {
         NSString *sharingTitle = OCKLocalizedString(@"SHARING_CELL_TITLE", nil);
         if ([self.delegate respondsToSelector:@selector(connectViewController:titleForSharingCellForContact:)]) {
             NSString *delegateTitle = [self.delegate connectViewController:self.masterViewController titleForSharingCellForContact:self.contact];
@@ -146,7 +146,7 @@ static const CGFloat HeaderViewHeight = 225.0;
     }
     if (sharingSection.count > 0) {
         [_tableViewData addObject:[sharingSection copy]];
-        _sharingSectionTitle = OCKLocalizedString(@"CONTACT_SHARING_SECTION_TITLE", nil);
+        _sharingSectionTitle = NSLocalizedString(@"Message", nil);
         [_sectionTitles addObject:_sharingSectionTitle];
     }
 }

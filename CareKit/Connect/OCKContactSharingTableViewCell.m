@@ -66,7 +66,7 @@ static const CGFloat HorizontalMargin = 5.0;
         [_shareButton addTarget:self
                          action:@selector(buttonSelected:)
                forControlEvents:UIControlEventTouchUpInside];
-        UIImage *shareIcon = [[UIImage imageNamed:@"share" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *shareIcon = [[UIImage imageNamed:@"email" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [_shareButton setImage:shareIcon forState:UIControlStateNormal];
         [self addSubview:_shareButton];
     }
