@@ -38,6 +38,7 @@
 
 
 static const CGFloat HeaderViewHeight = 60.0;
+static const CGFloat ChartBottomPadding = 28.0;
 
 @interface OCKInsightsViewController() <UITableViewDelegate, UITableViewDataSource>
 
@@ -208,6 +209,14 @@ static const CGFloat HeaderViewHeight = 60.0;
 
 #pragma mark - UITableViewDataSource
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    OCKInsightItem* item = self.items[section];
+    if ([item isKindOfClass:[OCKChart class]]) {
+        return ChartBottomPadding;
+    } else {
+        return 0;
+    }
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.items.count;
 }
