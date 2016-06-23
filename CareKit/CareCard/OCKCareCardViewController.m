@@ -91,7 +91,7 @@
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:self
                                                                              action:@selector(showToday:)];
-    self.navigationItem.rightBarButtonItem.tintColor = self.maskImageTintColor;
+    self.navigationItem.rightBarButtonItem.tintColor = self.navItemTintColor ?: RedColor();
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.dataSource = self;

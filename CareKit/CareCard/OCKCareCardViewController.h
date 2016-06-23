@@ -161,6 +161,13 @@ OCK_CLASS_AVAILABLE
 @property (nonatomic, null_resettable) UIColor *maskImageTintColor;
 
 /**
+ The tint color that will be used for navbar items.
+
+ If tint color is not specified, a default red color will be used.
+ */
+@property (nonatomic, null_resettable) UIColor *navItemTintColor;
+
+/**
  A boolean to show the edge indicators.
  
  The default value is NO.
