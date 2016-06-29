@@ -109,8 +109,18 @@
 }
 
 - (void)showToday:(id)sender {
-    self.selectedDate = [NSDateComponents ock_componentsWithDate:[NSDate date] calendar:_calendar];
     [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:NSNotFound inSection:0] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    
+    NSDateComponents* today = [self today];
+    if(_selectedDate.weekOfYear != today.weekOfYear) {
+        OCKWeekViewController *weekController = [[OCKWeekViewController alloc] initWithShowCareCardWeekView:NO];
+        weekController.symptomTrackerWeekView.delegate = _weekViewController.symptomTrackerWeekView.delegate;
+        weekController.symptomTrackerWeekView.tintColor = self.progressRingTintColor;
+        _weekViewController = weekController;
+        [_pageViewController setViewControllers:@[weekController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    }
+    
+    self.selectedDate = [NSDateComponents ock_componentsWithDate:[NSDate date] calendar:_calendar];
 }
 
 - (void)prepareView {
