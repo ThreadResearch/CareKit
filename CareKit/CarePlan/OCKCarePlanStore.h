@@ -127,7 +127,7 @@ OCK_CLASS_AVAILABLE
  @param     type        Activity type used to filter the activity list.
  @param     completion  A completion block that returns the result of the operation and a list of activities.
  */
-- (void)activitiesWithType:(OCKCarePlanActivityType)type
+- (void)activitiesWithTypes:(NSArray*)types
                 completion:(void (^)(BOOL success, NSArray<OCKCarePlanActivity *> *activities, NSError * _Nullable error))completion;
 
 /**
@@ -172,16 +172,16 @@ OCK_CLASS_AVAILABLE
             completion:(void (^)(BOOL success, NSError * _Nullable error))completion;
 
 /**
-Get all the `OCKCarePlanEvent` objects for a given date.
+ Get all the `OCKCarePlanEvent` objects for a given date.
  
  @disccussion The returned events are grouped by `OCKCarePlanActivity` objects.
  
  @param     date            Date to filter events.
- @param     type            Activity type to filter events.
+ @param     types           List of Activity type to filter events.
  @param     completion      A completion block that returns the result of the operation and a list of event objects.
-*/
+ */
 - (void)eventsOnDate:(NSDateComponents *)date
-                type:(OCKCarePlanActivityType)type
+               types:(NSArray*)types
           completion:(void (^)(NSArray<NSArray<OCKCarePlanEvent *> *> *eventsGroupedByActivity, NSError * _Nullable error))completion;
 
 /**
@@ -221,7 +221,7 @@ Get all the `OCKCarePlanEvent` objects for a given date.
  @param     handler           A completion block that reports completion status for each day.
  @param     completion      A completion block that reports the end of the enumeration.
  */
-- (void)dailyCompletionStatusWithType:(OCKCarePlanActivityType)type
+- (void)dailyCompletionStatusWithTypes:(NSArray*)types
                             startDate:(NSDateComponents *)startDate
                               endDate:(NSDateComponents *)endDate
                               handler:(void (^)(NSDateComponents *date, NSUInteger completedEvents, NSUInteger totalEvents))handler

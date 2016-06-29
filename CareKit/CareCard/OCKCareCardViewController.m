@@ -263,7 +263,7 @@
 
 - (void)fetchEvents {
     [self.store eventsOnDate:self.selectedDate
-                        type:OCKCarePlanActivityTypeIntervention
+                        types:@[@(OCKCarePlanActivityTypeMedication), @(OCKCarePlanActivityTypeIntervention)]
                   completion:^(NSArray<NSArray<OCKCarePlanEvent *> *> * _Nonnull eventsGroupedByActivity, NSError * _Nonnull error) {
                       NSAssert(!error, error.localizedDescription);
                       dispatch_async(dispatch_get_main_queue(), ^{
@@ -293,6 +293,10 @@
     for (NSArray<OCKCarePlanEvent* > *events in _events) {
         totalEvents += events.count;
         for (OCKCarePlanEvent *event in events) {
+            if ([event.activity.groupIdentifier isEqualToString:@"AsNeededMedicationGroup"]) {
+                totalEvents--;
+                continue;
+            }
             if (event.state == OCKCarePlanEventStateCompleted) {
                 completedEvents++;
             }
@@ -319,10 +323,11 @@
     
     NSMutableArray *values = [NSMutableArray new];
     
-    [self.store dailyCompletionStatusWithType:OCKCarePlanActivityTypeIntervention
+    [self.store dailyCompletionStatusWithTypes:@[@(OCKCarePlanActivityTypeIntervention), @(OCKCarePlanActivityTypeMedication)]
                                     startDate:[NSDateComponents ock_componentsWithDate:startOfWeek calendar:_calendar]
                                       endDate:[NSDateComponents ock_componentsWithDate:endOfWeek calendar:_calendar]
                                       handler:^(NSDateComponents * _Nonnull date, NSUInteger completedEvents, NSUInteger totalEvents) {
+                                          
                                           if ([date isLaterThan:[self today]]) {
                                               [values addObject:@(0)];
                                           } else if (totalEvents == 0) {

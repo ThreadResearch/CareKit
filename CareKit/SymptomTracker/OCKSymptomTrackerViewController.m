@@ -236,7 +236,7 @@
 
 - (void)fetchEvents {
     [_store eventsOnDate:_selectedDate
-                    type:OCKCarePlanActivityTypeAssessment
+                    types:@[@(OCKCarePlanActivityTypeAssessment)]
               completion:^(NSArray<NSArray<OCKCarePlanEvent *> *> * _Nonnull eventsGroupedByActivity, NSError * _Nonnull error) {
                   NSAssert(!error, error.localizedDescription);
                   dispatch_async(dispatch_get_main_queue(), ^{
@@ -293,7 +293,7 @@
     
     NSMutableArray *values = [NSMutableArray new];
     
-    [_store dailyCompletionStatusWithType:OCKCarePlanActivityTypeAssessment
+    [_store dailyCompletionStatusWithTypes:@[@(OCKCarePlanActivityTypeAssessment)]
                                 startDate:[NSDateComponents ock_componentsWithDate:startOfWeek calendar:_calendar]
                                   endDate:[NSDateComponents ock_componentsWithDate:endOfWeek calendar:_calendar]
                                   handler:^(NSDateComponents * _Nonnull date, NSUInteger completedEvents, NSUInteger totalEvents) {

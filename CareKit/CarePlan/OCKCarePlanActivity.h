@@ -49,7 +49,8 @@ typedef NS_ENUM(NSInteger, OCKCarePlanActivityType) {
     /** Do something related to the treatment. */
     OCKCarePlanActivityTypeIntervention,
     /** Perform a task in the app. */
-    OCKCarePlanActivityTypeAssessment
+    OCKCarePlanActivityTypeAssessment,
+    OCKCarePlanActivityTypeMedication
 };
 
 
@@ -112,6 +113,16 @@ OCK_CLASS_AVAILABLE
                                     text:(nullable NSString *)text
                                tintColor:(nullable UIColor *)tintColor
                         resultResettable:(BOOL)resultResettable
+                                schedule:(OCKCareSchedule *)schedule
+                                userInfo:(nullable NSDictionary *)userInfo;
+
++ (instancetype)medicationWithIdentifier:(NSString *)identifier
+                         groupIdentifier:(nullable NSString *)groupIdentifier
+                                   title:(NSString *)title
+                                    text:(nullable NSString *)text
+                               tintColor:(nullable UIColor *)tintColor
+                            instructions:(nullable NSString *)instructions
+                                imageURL:(nullable NSURL *)imageURL
                                 schedule:(OCKCareSchedule *)schedule
                                 userInfo:(nullable NSDictionary *)userInfo;
 

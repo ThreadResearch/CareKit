@@ -95,6 +95,29 @@
                                    userInfo:userInfo];
 }
 
++ (instancetype)medicationWithIdentifier:(NSString *)identifier
+                         groupIdentifier:(nullable NSString *)groupIdentifier
+                                   title:(NSString *)title
+                                    text:(nullable NSString *)text
+                               tintColor:(nullable UIColor *)tintColor
+                            instructions:(nullable NSString *)instructions
+                                imageURL:(nullable NSURL *)imageURL
+                                schedule:(OCKCareSchedule *)schedule
+                                userInfo:(nullable NSDictionary *)userInfo {
+    
+    return [[self alloc] initWithIdentifier:identifier
+                            groupIdentifier:groupIdentifier
+                                       type:OCKCarePlanActivityTypeMedication
+                                      title:title
+                                       text:text
+                                  tintColor:tintColor
+                               instructions:instructions
+                                   imageURL:imageURL
+                                   schedule:schedule
+                           resultResettable:YES
+                                   userInfo:userInfo];
+}
+
 + (instancetype)interventionWithIdentifier:(NSString *)identifier
                            groupIdentifier:(NSString *)groupIdentifier
                                      title:(NSString *)title

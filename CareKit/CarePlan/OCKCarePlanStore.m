@@ -349,10 +349,10 @@ static NSString * const OCKAttributeNameDayIndex = @"numberOfDaysSinceStart";
 
 #pragma mark - activities
 
-- (void)activitiesWithType:(OCKCarePlanActivityType)type
+- (void)activitiesWithTypes:(NSArray*)types
                 completion:(void (^)(BOOL success, NSArray<OCKCarePlanActivity *> *activities, NSError *error))completion {
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type = %@", @(type)];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type IN %@", types];
     return [self fetchActivitiesWithPredicate:predicate completion:completion];
 }
 
@@ -524,8 +524,8 @@ static NSString * const OCKAttributeNameDayIndex = @"numberOfDaysSinceStart";
 }
 
 - (void)eventsOnDate:(NSDateComponents *)date
-               type:(OCKCarePlanActivityType)type
-         completion:(void (^)(NSArray<NSArray<OCKCarePlanEvent *> *> *eventsGroupedByActivity, NSError *error))completion {
+               types:(NSArray*)types
+          completion:(void (^)(NSArray<NSArray<OCKCarePlanEvent *> *> *eventsGroupedByActivity, NSError *error))completion {
     
     
     OCKThrowInvalidArgumentExceptionIfNil(date);
@@ -533,7 +533,7 @@ static NSString * const OCKAttributeNameDayIndex = @"numberOfDaysSinceStart";
     
     __block NSMutableArray *eventGroups = [NSMutableArray array];
     
-    [self activitiesWithType:type
+    [self activitiesWithTypes:types
                   completion:^(BOOL success, NSArray<OCKCarePlanActivity *> * _Nonnull activities, NSError * _Nonnull error) {
                       NSArray<OCKCarePlanActivity *> *items = activities;
                       if (items.count > 0) {
@@ -738,7 +738,7 @@ static NSString * const OCKAttributeNameDayIndex = @"numberOfDaysSinceStart";
                 OCKCarePlanActivityType type = event.activity.type;
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if(type == OCKCarePlanActivityTypeIntervention &&
+                    if( (type == OCKCarePlanActivityTypeIntervention || type == OCKCarePlanActivityTypeMedication) &&
                        _careCardUIDelegate &&
                        [_careCardUIDelegate respondsToSelector:@selector(carePlanStore:didReceiveUpdateOfEvent:)]) {
                         [_careCardUIDelegate carePlanStore:self didReceiveUpdateOfEvent:copiedEvent];
@@ -814,7 +814,7 @@ static NSString * const OCKAttributeNameDayIndex = @"numberOfDaysSinceStart";
                  completion:completion2];
 }
 
-- (void)dailyCompletionStatusWithType:(OCKCarePlanActivityType)type
+- (void)dailyCompletionStatusWithTypes:(NSArray*)types
                             startDate:(NSDateComponents *)startDate
                               endDate:(NSDateComponents *)endDate
                               handler:(void (^)(NSDateComponents *date, NSUInteger completed, NSUInteger total))handler
@@ -844,7 +844,7 @@ static NSString * const OCKAttributeNameDayIndex = @"numberOfDaysSinceStart";
     }
     
     __weak typeof(self) weakSelf = self;
-    [self fetchActivitiesWithPredicate:[NSPredicate predicateWithFormat:@"type = %d", type]
+    [self fetchActivitiesWithPredicate:[NSPredicate predicateWithFormat:@"type IN %@", types]
                             completion:^(BOOL success, NSArray<OCKCarePlanActivity *> *activities, NSError *error) {
                                 if (error) {
                                     completion(YES, error);
