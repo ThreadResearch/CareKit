@@ -61,6 +61,7 @@
     NSMutableArray *_weekValues;
     OCKCareCardTableViewHeader *_headerView;
     OCKAsNeededTableViewHeader *_asNeededHeaderView;
+    UIView *_footerView;
     UIPageViewController *_pageViewController;
     OCKWeekViewController *_weekViewController;
     NSCalendar *_calendar;
@@ -161,9 +162,15 @@
         
         [_pageViewController setViewControllers:@[weekController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
-    
+
+    if (!_footerView) {
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 50)];
+        _footerView.backgroundColor = [UIColor clearColor];
+    }
+
     _tableView.tableHeaderView = _pageViewController.view;
-    _tableView.tableFooterView = [UIView new];
+    _tableView.tableFooterView = _footerView;
+    _tableView.backgroundColor = OCKColorFromRGB(0xF9F9F9);
     
     [self setUpConstraints];
 }

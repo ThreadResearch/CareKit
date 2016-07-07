@@ -60,7 +60,7 @@ static const CGFloat LeadingMargin = 15.0;
         [self addSubview:_asNeededLabel];
     }
 
-    self.backgroundColor = OCKColorFromRGB(0xF9F9F9);
+    self.backgroundColor = [UIColor clearColor];
 
     [self setUpConstraints];
 }
