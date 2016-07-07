@@ -35,6 +35,7 @@
 #import "OCKCareCardWeekView.h"
 #import "NSDateComponents+CarePlanInternal.h"
 #import "OCKCareCardTableViewHeader.h"
+#import "OCKAsNeededTableViewHeader.h"
 #import "OCKCareCardTableViewCell.h"
 #import "OCKWeekViewController.h"
 #import "OCKHeartView.h"
@@ -56,8 +57,10 @@
 @implementation OCKCareCardViewController {
     UITableView *_tableView;
     NSMutableArray<NSMutableArray<OCKCarePlanEvent *> *> *_events;
+    NSMutableArray<NSMutableArray<OCKCarePlanEvent *> *> *_asNeededEvents;
     NSMutableArray *_weekValues;
     OCKCareCardTableViewHeader *_headerView;
+    OCKAsNeededTableViewHeader *_asNeededHeaderView;
     UIPageViewController *_pageViewController;
     OCKWeekViewController *_weekViewController;
     NSCalendar *_calendar;
@@ -138,6 +141,10 @@
     }
     _headerView.heartView.maskImage = self.maskImage;
     _headerView.tintColor = self.maskImageTintColor;
+
+    if (!_asNeededHeaderView) {
+        _asNeededHeaderView = [[OCKAsNeededTableViewHeader alloc] init];
+    }
     
     if (!_pageViewController) {
         _pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
@@ -268,8 +275,9 @@
                       NSAssert(!error, error.localizedDescription);
                       dispatch_async(dispatch_get_main_queue(), ^{
                           _events = [NSMutableArray new];
+                          _asNeededEvents = [NSMutableArray new];
                           for (NSArray<OCKCarePlanEvent *> *events in eventsGroupedByActivity) {
-                              [_events addObject:[events mutableCopy]];
+                              [self sortEvents:events];
                           }
                           
                           if (self.delegate &&
@@ -282,6 +290,16 @@
                           [_tableView reloadData];
                       });
                   }];
+}
+
+- (void)sortEvents:(NSArray<OCKCarePlanEvent *> *)events {
+    OCKCarePlanEvent *event = events.firstObject;
+
+    if ([event.activity.groupIdentifier isEqualToString:@"AsNeededMedicationGroup"]) {
+        [_asNeededEvents addObject:[events mutableCopy]];
+    } else {
+        [_events addObject:[events mutableCopy]];
+    }
 }
 
 - (void)updateHeaderView {
@@ -471,11 +489,20 @@
 #pragma mark - UITableViewDelegate
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 1) {
+        return _asNeededHeaderView;
+    }
+
     return _headerView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    OCKCarePlanActivity *selectedActivity = _events[indexPath.row].firstObject.activity;
+    OCKCarePlanActivity *selectedActivity;
+    if (indexPath.section == 1) {
+        selectedActivity = _asNeededEvents[indexPath.row].firstObject.activity;
+    } else {
+        selectedActivity = _events[indexPath.row].firstObject.activity;
+    }
     
     if (self.delegate &&
         [self.delegate respondsToSelector:@selector(careCardViewController:didSelectRowWithInterventionActivity:)]) {
@@ -492,7 +519,19 @@
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (_asNeededEvents.count > 0) {
+        return 2;
+    }
+
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 1) {
+        return _asNeededEvents.count;
+    }
+
     return _events.count;
 }
 
@@ -503,7 +542,7 @@
         cell = [[OCKCareCardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                                reuseIdentifier:CellIdentifier];
     }
-    cell.interventionEvents = _events[indexPath.row];
+    cell.interventionEvents = (indexPath.section == 1) ? _asNeededEvents[indexPath.row] : _events[indexPath.row];
     cell.delegate = self;
     cell.showEdgeIndicator = self.showEdgeIndicators;
     return cell;

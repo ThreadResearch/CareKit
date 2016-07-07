@@ -102,6 +102,8 @@
 		24EA9FCA1C9A3D420036028E /* OCKHeartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24EA9FAB1C9A3D420036028E /* OCKHeartView.m */; };
 		24F8E4761C934FEE003B77BD /* OCKDefines_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 24F8E4741C934FEE003B77BD /* OCKDefines_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		24F8E47B1C93515A003B77BD /* CareKit.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24F8E47D1C93515A003B77BD /* CareKit.strings */; };
+		433E94F31D2EFEA000C39068 /* OCKAsNeededTableViewHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 433E94F11D2EFEA000C39068 /* OCKAsNeededTableViewHeader.h */; };
+		433E94F41D2EFEA000C39068 /* OCKAsNeededTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 433E94F21D2EFEA000C39068 /* OCKAsNeededTableViewHeader.m */; };
 		8605A5BE1C4F04EC00DD65FF /* CareKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8605A5BD1C4F04EC00DD65FF /* CareKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8605A5C51C4F04EC00DD65FF /* CareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8605A5BA1C4F04EC00DD65FF /* CareKit.framework */; };
 		8605A5CA1C4F04EC00DD65FF /* CareKitCarePlanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8605A5C91C4F04EC00DD65FF /* CareKitCarePlanTests.m */; };
@@ -260,6 +262,8 @@
 		24F8E49C1C93521C003B77BD /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/CareKit.strings; sourceTree = "<group>"; };
 		24F8E49D1C93521F003B77BD /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/CareKit.strings; sourceTree = "<group>"; };
 		24F8E49E1C935224003B77BD /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/CareKit.strings; sourceTree = "<group>"; };
+		433E94F11D2EFEA000C39068 /* OCKAsNeededTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCKAsNeededTableViewHeader.h; sourceTree = "<group>"; };
+		433E94F21D2EFEA000C39068 /* OCKAsNeededTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCKAsNeededTableViewHeader.m; sourceTree = "<group>"; };
 		8605A5BA1C4F04EC00DD65FF /* CareKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CareKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8605A5BD1C4F04EC00DD65FF /* CareKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CareKit.h; sourceTree = "<group>"; };
 		8605A5BF1C4F04EC00DD65FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -553,6 +557,8 @@
 				24EA9FA21C9A3D420036028E /* OCKCareCardTableViewHeader.m */,
 				24EA9FAA1C9A3D420036028E /* OCKHeartView.h */,
 				24EA9FAB1C9A3D420036028E /* OCKHeartView.m */,
+				433E94F11D2EFEA000C39068 /* OCKAsNeededTableViewHeader.h */,
+				433E94F21D2EFEA000C39068 /* OCKAsNeededTableViewHeader.m */,
 			);
 			name = "Header View";
 			sourceTree = "<group>";
@@ -716,6 +722,7 @@
 				8677EE1A1C9775EB00588CD6 /* OCKCarePlanStore_Internal.h in Headers */,
 				2489297D1C90E70100EBBE1F /* OCKConnectViewController.h in Headers */,
 				24EA9FC91C9A3D420036028E /* OCKHeartView.h in Headers */,
+				433E94F31D2EFEA000C39068 /* OCKAsNeededTableViewHeader.h in Headers */,
 				248929841C90E70100EBBE1F /* OCKContactSharingTableViewCell.h in Headers */,
 				24EA9FC21C9A3D420036028E /* OCKCareCardViewController.h in Headers */,
 				8677EE0E1C9775EB00588CD6 /* OCKCarePlanActivity.h in Headers */,
@@ -920,6 +927,7 @@
 				24EA9FC81C9A3D420036028E /* OCKHeartButton.m in Sources */,
 				8677EE191C9775EB00588CD6 /* OCKCarePlanStore.xcdatamodeld in Sources */,
 				241707D01C9A3AB7005D7123 /* OCKGroupedBarChartView.m in Sources */,
+				433E94F41D2EFEA000C39068 /* OCKAsNeededTableViewHeader.m in Sources */,
 				241707C41C9A3AB7005D7123 /* OCKBarChart.m in Sources */,
 				8677EE0F1C9775EB00588CD6 /* OCKCarePlanActivity.m in Sources */,
 				241707D21C9A3AB7005D7123 /* OCKInsightItem.m in Sources */,
