@@ -116,6 +116,16 @@ OCK_CLASS_AVAILABLE
                                 schedule:(OCKCareSchedule *)schedule
                                 userInfo:(nullable NSDictionary *)userInfo;
 
++ (instancetype)assessmentWithIdentifier:(NSString *)identifier
+                         groupIdentifier:(nullable NSString *)groupIdentifier
+                                   title:(NSString *)title
+                                    text:(nullable NSString *)text
+                               tintColor:(nullable UIColor *)tintColor
+                            instructions:(nullable NSString *)instructions
+                        resultResettable:(BOOL)resultResettable
+                                schedule:(OCKCareSchedule *)schedule
+                                userInfo:(nullable NSDictionary *)userInfo;
+
 + (instancetype)medicationWithIdentifier:(NSString *)identifier
                          groupIdentifier:(nullable NSString *)groupIdentifier
                                    title:(NSString *)title
