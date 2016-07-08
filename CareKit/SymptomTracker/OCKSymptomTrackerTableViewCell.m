@@ -123,6 +123,7 @@ static const CGFloat HorizontalMargin = 10.0;
     
     CGFloat LeadingMargin = self.separatorInset.left;
     CGFloat TrailingMargin = (self.separatorInset.right > 0) ? self.separatorInset.right + 25 : 40;
+    CGFloat ValueWidth = _valueLabel.intrinsicContentSize.width;
     
     CGFloat unitLabelOffset = 0;
     
@@ -163,6 +164,13 @@ static const CGFloat HorizontalMargin = 10.0;
     }
     
     [_constraints addObjectsFromArray:@[
+                                        [NSLayoutConstraint constraintWithItem:_valueLabel
+                                                                     attribute:NSLayoutAttributeWidth
+                                                                     relatedBy:NSLayoutRelationEqual
+                                                                        toItem:nil
+                                                                     attribute:NSLayoutAttributeNotAnAttribute
+                                                                    multiplier:1.0
+                                                                      constant:ValueWidth],
                                         [NSLayoutConstraint constraintWithItem:_titleLabel
                                                                      attribute:NSLayoutAttributeLeading
                                                                      relatedBy:NSLayoutRelationEqual
